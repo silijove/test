@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 const Home = () => <h2>Home</h2>;
 const About = () => <h2>About</h2>;
@@ -20,6 +21,10 @@ Topic.propTypes = {
 const Topics = ({ match }) => (
   <div>
     <h2>Topics</h2>
+
+    <Button variant="contained" color="primary">
+      HALLOOO
+    </Button>
 
     <ul>
       <li>
