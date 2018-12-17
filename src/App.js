@@ -1,7 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import HttpsRedirect from 'react-https-redirect';
+
+const express = require('express');
+const http = require('http');
+const enforce = require('express-sslify');
+
+const app = express();
+
+app.use(enforce.HTTPS());
+
+http.createServer(app).listen(app.get('port'), () => {
+  console.log(`Express server listening on port ${app.get('port')}`);
+});
 
 const Home = () => <h2>Home</h2>;
 const About = () => <h2>About</h2>;
@@ -61,17 +72,15 @@ const Header = () => (
 );
 
 const App = () => (
-  <HttpsRedirect>
-    <Router>
-      <div>
-        <Header />
+  <Router>
+    <div>
+      <Header />
 
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/topics" component={Topics} />
-      </div>
-    </Router>
-  </HttpsRedirect>
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/topics" component={Topics} />
+    </div>
+  </Router>
 );
 
 export default App;
