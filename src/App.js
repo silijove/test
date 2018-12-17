@@ -14,7 +14,7 @@ const Topic = ({ match }) => (
   </h3>
 );
 Topic.propTypes = {
-  match: PropTypes.func.isRequired,
+  match: PropTypes.shape.isRequired,
 };
 
 const Topics = ({ match }) => (
@@ -39,7 +39,10 @@ const Topics = ({ match }) => (
   </div>
 );
 Topics.propTypes = {
-  match: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const Header = () => (
